@@ -13,7 +13,7 @@ screen.tracer(0)
 
 snake = Snake()
 food = Food()
-score_text = Scoreboard()
+score_board = Scoreboard()
 
 screen.listen()
 
@@ -34,6 +34,16 @@ while _game_running:
     # Detect collision with food
     if snake.head.distance(food) < 15:
         food.refresh()
-        score_text.increase_score()
+        score_board.increase_score()
+
+    # Detect collision with wall
+    hit_right_wall = snake.head.xcor() > 280
+    hit_left_wall = snake.head.xcor() < -300
+    hit_top_wall = snake.head.ycor() > 280
+    hit_bottom_Wall = snake.head.ycor() < -280
+
+    if hit_right_wall or hit_left_wall or hit_top_wall or hit_bottom_Wall:
+        _game_running = False
+        score_board.game_over()
 
 screen.exitonclick()
