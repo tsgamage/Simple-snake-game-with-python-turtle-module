@@ -27,3 +27,8 @@ class Scoreboard(Turtle):
     def game_over(self):
         self.goto(0,0)
         self.write("GAME OVER", move=False, align=TEXT_ALIGNMENT, font=GAME_OVER_FONT)
+
+    def game_over_reason(self, reason="Please give a reason"):
+        self.goto(0, -20)
+        self.color("red")
+        self.write(reason, move=False, align=TEXT_ALIGNMENT, font=FONT)
